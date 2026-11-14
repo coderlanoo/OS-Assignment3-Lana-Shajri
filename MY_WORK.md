@@ -32,11 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | Lana Alshajri |
+| **Student ID** | 445052240 |
+| **University Email** | 445052240@std.psau.edu.sa |
+| **GitHub Username** | coderlanoo |
+| **Repository Link** | https://github.com/coderlanoo/OS-Assignment3-Lana-Shajri⁠ |
  
 ---
 
@@ -132,68 +132,78 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [November 13, 2026, 11:30 PM]
+**What I did**: Implemented synchronization for the ReadyQueue.
 
-**Details**:
+**Details**: Added a ReentrantLock to protect the shared ready queue.
+Reviewed the add() and poll() methods.
+Ensured that shared queue operations are protected.
 
-**Challenges**:
+**Challenges**: Understanding where to acquire and release the lock.
 
-**Solution**:
+**Solution**: Used try-finally to ensure the lock is always released.
 
-**Time spent**:
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**: 10 mins.
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 2 - [November 13, 2026, 11:40PM]]
+**What I did**: Protected shared statistics.
 
-**Details**:
+**Details**: Added a ReentrantLock to SharedStats.
+Protected counter updates and service time calculations.
+Protected getter methods.
 
-**Challenges**:
+**Challenges**: Understanding race conditions when multiple CPU threads update shared variables.
 
-**Solution**:
+**Solution**: Used one shared lock to protect the statistics.
 
-**Time spent**:
-
----
-
-### Entry 4 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**: 10 mins. 
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 3 - [November 14, 2026, 12:00 AM ]
+**What I did**: Implemented semaphore synchronization.
 
-**Details**:
+**Details**: Added a counting Semaphore to ReadyQueue.
+Replaced busy waiting with semaphore-based coordination.
 
-**Challenges**:
+**Challenges**: Understanding how semaphore permits control access to available processes.
 
-**Solution**:
+**Solution**: Used acquire() and release() to coordinate threads.
 
-**Time spent**:
+**Time spent**: 20 mins. 
+
+---
+
+### Entry 4 - [November 14, 2026, 10:21 AM]
+**What I did**: Tested the synchronization implementation.
+
+**Details**: Ran the scheduler simulation.
+Checked context switches and completed processes.
+Verified total service time and busy-waiting polls.
+
+**Challenges**: Checking whether the results matched the expected values.
+
+**Solution**: Reviewed the verification output and checked the synchronization logic.
+
+**Time spent**: 25 mins.
+
+---
+
+### Entry 5 - [November 14, 2026, 10:40 AM]
+**What I did**: Fixed the completed process counter and uploaded the changes.
+
+**Details**: Fixed synchronization in getCompletedProcessCount().
+Ran the program again.
+Confirmed that all verification values matched.
+Committed and pushed the changes to GitHub.
+
+**Challenges**: The completed process counter was not properly protected.
+
+**Solution**: Applied the statistics lock and verified the final output.
+
+**Time spent**: 15 mins. 
 
 ---
 
@@ -298,7 +308,7 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[I learned that synchronization prevents race conditions when multiple threads access shared data. A critical section is a part of the code that needs protection. I used ReentrantLock to protect the ready queue and shared statistics. The try/finally structure ensures that locks are always released. I also learned how a counting semaphore controls access and helps avoid busy waiting.]
 
 Verification block of the **original starter**:
 ```
@@ -321,7 +331,7 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[The most challenging part was understanding how multiple CPU threads access shared data. At first, I found it difficult to understand the race conditions. Protecting the shared statistics was also challenging. I had to check the locks carefully. Running and testing the program helped me understand the problem.]
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
@@ -336,7 +346,7 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[I started by reading the README file and reviewing the Java code. I studied the synchronization concepts from the course material. I made changes to the code and tested the program. I checked the verification results to make sure the values were correct. I also used GitHub to save and upload my changes.]
 
 ## Question 4: Classical Problems and Deadlock
 
@@ -345,15 +355,17 @@ Verification block of **my final version**:
 > 💡 **TIP:** Recall the bounded-buffer solution of the slides (`empty`, `full`, `mutex`) and the order of `wait()` calls in the producer and the consumer. For the deadlock, think about a producer that holds the mutex while waiting for a free slot that only a consumer (who needs the mutex) can create.
 
 **Your Answer:** *(3-5 sentences)*
-
+Synchronization is important in many real-world applications. In banking systems, it prevents incorrect updates to account balances. In ticket booking systems, it prevents two users from booking the same seat. Websites use synchronization to protect shared counters and data. Databases also use it to manage access from multiple users.
 **Classical problem and roles**:
-[Name the problem; who is the producer, who is the consumer?]
+the buffer, and the consumer removes them.
 
 **Semaphores for a bounded queue (name and initial value)**:
-[Name the three semaphores and their initial values.]
+empty = N (available slots)
+full = 0 (occupied slots)
+mutex = 1 (mutual exclusion)
 
 **Deadlock scenario and prevention**:
-[Describe the scenario and the necessary condition you would break.]
+Deadlock can happen if the producer holds the mutex while waiting for an empty slot. I would prevent it by breaking the hold-and-wait condition, ensuring the producer waits for an empty slot before acquiring the mutex.
 
 ## Summary
 

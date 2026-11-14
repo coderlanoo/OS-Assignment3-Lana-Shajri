@@ -118,7 +118,12 @@ class SharedStats {
     }
 }
 public static int getCompletedProcessCount() {
-    return completedProcessCount;
+    statsLock.lock();
+    try {
+        return completedProcessCount;
+    } finally {
+        statsLock.unlock();
+    }
 }
 }
 
